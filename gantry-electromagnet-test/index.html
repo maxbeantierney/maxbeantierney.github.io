@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gantry and Electromagnetic Lock Test | Max Bean-Tierney</title>
+  <meta name="description" content="Electromagnet lock and release control, safe-height crash prevention, and square homing with independent limit switches on Vivvity's dual-motor gantry.">
+  <link rel="canonical" href="https://maxbeantierney.github.io/gantry-electromagnet-test/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Max Bean-Tierney">
+  <meta property="og:title" content="Gantry and Electromagnetic Lock Test | Max Bean-Tierney">
+  <meta property="og:description" content="Electromagnet lock and release control, safe-height crash prevention, and square homing with independent limit switches on Vivvity's dual-motor gantry.">
+  <meta property="og:url" content="https://maxbeantierney.github.io/gantry-electromagnet-test/">
+  <meta property="og:image" content="https://maxbeantierney.github.io/assets/images/vivvity-gantry-cad.jpg">
+  <meta property="og:image:alt" content="CAD model of the dual lead-screw gantry">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/">Max Bean-Tierney <span>· Mechanical Engineering</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="/#work">Work</a>
+      <a href="/vivvity/">Vivvity</a>
+      <a href="/patents/" class="nav-hide-sm">Patents</a>
+      <a href="/about/">About</a>
+      <!-- Resume: add once the updated PDF is at /assets/Max_Bean-Tierney_Resume.pdf
+      <a href="/assets/Max_Bean-Tierney_Resume.pdf">Resume</a> -->
+      <a class="nav-cta" href="mailto:maxbeantierney@gmail.com">Email</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<article>
+<div class="wrap page-head">
+  <p class="crumb"><a href="/vivvity/">← Vivvity</a></p>
+  <p class="eyebrow">Video · June 2026</p>
+  <h1>Gantry and Electromagnetic Lock Test</h1>
+  <p class="dek">The first test of electromagnet lock and release, controlled from firmware, plus crash-prevention logic for the Vivvity gantry.</p>
+</div>
+
+<div class="wrap">
+  <div class="fig-row two-wide">
+    <div class="prose">
+      <div class="result">
+        <h2>Result</h2>
+        <ul>
+          <li>The gantry seats 1 mm before locking and lifts 1 mm on release, so residual magnetism can't disturb later moves</li>
+          <li>Any move at or below chip height first goes to a safe height</li>
+          <li>Independent optical limit switches on each motor keep the dual-motor axes square after homing</li>
+        </ul>
+      </div>
+      <h2>Problem</h2>
+      <p>The electrode block has to lock onto the chip reliably, release cleanly, and never be driven into the chip by a bad command or a GUI mistake.</p>
+      <h2>What I did</h2>
+      <p><strong>Lock sequence.</strong> I added electromagnet control to the firmware and GUI. During locking, the gantry moves the electrodes down 1 mm to seat the magnets against the steel plate. On release it moves up 1 mm. In the video you can hear a click as the four electromagnets lock onto the plate.</p>
+      <p><strong>Crash prevention.</strong> Every GUI button calls a macro defined in firmware, so the safety logic lives at the lowest level. Any move at or below chip height automatically goes to a safe height first.</p>
+      <p><strong>Square homing.</strong> The Y and Z axes each use two motors in an open-loop design, with an independent optical limit switch per motor, so the gantry homes perfectly straight.</p>
+      <h2>What came next</h2>
+      <p>This test used four 26 lbf magnets. I later <a href="/electromagnet-fea/">moved to two 160 lbf magnets after FEA</a> and integrated the syringe pump for a <a href="/full-system-demo/">full closed-loop pressure run</a>.</p>
+    </div>
+    <figure class="portrait-video">
+      <video controls playsinline preload="metadata" width="720" height="1280" poster="/assets/images/gantry-run-poster.jpg">
+        <source src="/assets/videos/gantry_run_1.mp4" type="video/mp4">
+        <a href="/assets/videos/gantry_run_1.mp4">Download the gantry test video (MP4)</a>
+      </video>
+      <figcaption>33 s test run, with sound. Listen for the click as the electromagnets lock.</figcaption>
+    </figure>
+  </div>
+</div>
+</article>
+<section class="section">
+  <div class="wrap">
+    <h2>Related work</h2>
+    <div class="related">
+    <a href="/vivvity/"><b>Vivvity system breakdown</b><small>Architecture, ownership, and status of the full instrument</small></a>
+    <a href="/electromagnet-fea/"><b>Electromagnet upgrade and FEA</b><small>Magnetostatic check of plate saturation → 30 psi seal</small></a>
+    <a href="/full-system-demo/"><b>Full system run video</b><small>Complete cycle with closed-loop pressure control</small></a>
+    <a href="/gasket-pressurization-module/"><b>Side-sealing gasket (SLAS2026)</b><small>5× contact area, printed on a Formlabs Form 4</small></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div>
+      <h2>Let's talk</h2>
+      <p>Looking for hardware, robotics, and mechanical engineering internships.</p>
+    </div>
+    <div class="btns">
+      <a class="btn btn-primary" href="mailto:maxbeantierney@gmail.com">maxbeantierney@gmail.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/maximilian-bean-tierney-b02609282/">LinkedIn</a>
+      <a class="btn" href="https://github.com/maxbeantierney">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

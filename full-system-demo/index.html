@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Full System Run with Closed-Loop Pressure Control | Max Bean-Tierney</title>
+  <meta name="description" content="Video of Vivvity running a complete cycle: homing, lowering onto the chip, electromagnetic clamping, closed-loop pressurization holding about 0.15 psi of setpoint, release, and park.">
+  <link rel="canonical" href="https://maxbeantierney.github.io/full-system-demo/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Max Bean-Tierney">
+  <meta property="og:title" content="Full System Run with Closed-Loop Pressure Control | Max Bean-Tierney">
+  <meta property="og:description" content="Video of Vivvity running a complete cycle: homing, lowering onto the chip, electromagnetic clamping, closed-loop pressurization holding about 0.15 psi of setpoint, release, and park.">
+  <meta property="og:url" content="https://maxbeantierney.github.io/full-system-demo/">
+  <meta property="og:image" content="https://maxbeantierney.github.io/assets/images/full-system-run-poster.jpg">
+  <meta property="og:image:alt" content="Vivvity's electrode block lowered onto a microfluidic chip">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/">Max Bean-Tierney <span>· Mechanical Engineering</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="/#work">Work</a>
+      <a href="/vivvity/">Vivvity</a>
+      <a href="/patents/" class="nav-hide-sm">Patents</a>
+      <a href="/about/">About</a>
+      <!-- Resume: add once the updated PDF is at /assets/Max_Bean-Tierney_Resume.pdf
+      <a href="/assets/Max_Bean-Tierney_Resume.pdf">Resume</a> -->
+      <a class="nav-cta" href="mailto:maxbeantierney@gmail.com">Email</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<article>
+<div class="wrap page-head">
+  <p class="crumb"><a href="/vivvity/">← Vivvity</a></p>
+  <p class="eyebrow">Video · August 2026</p>
+  <h1>Full System Run with Closed-Loop Pressure Control</h1>
+  <p class="dek">The first run of Vivvity's gantry, clamp, and pressure system working together as one instrument.</p>
+</div>
+
+<div class="wrap">
+  <div class="fig-row two-wide">
+    <figure>
+      <video controls playsinline preload="metadata" width="1280" height="720" poster="/assets/images/full-system-run-poster.jpg">
+        <source src="/assets/videos/full-system-run.mp4" type="video/mp4">
+        <a href="/assets/videos/full-system-run.mp4">Download the full-system run video (MP4)</a>
+      </video>
+      <figcaption>Full run, 4 min 15 s, with sound. The video switches between the operator GUI and the hardware. <a href="/assets/videos/full-system-run.mp4">Open the video file directly</a>.</figcaption>
+    </figure>
+    <div>
+      <h2 style="font-size:1.2rem">What happens in the run</h2>
+      <ol class="steps">
+        <li>Homes both axes</li>
+        <li>Lowers the electrode block onto the microfluidic chip</li>
+        <li>Locks the block to the chip with the electromagnetic clamp</li>
+        <li>Pressurizes the chip with the syringe pump and holds the seal under pressure</li>
+        <li>Releases the clamp and returns to its park position</li>
+      </ol>
+      <div class="result">
+        <h3>Result</h3>
+        <ul>
+          <li>Closed-loop pressure hold: about <strong>0.15 psi</strong> from setpoint</li>
+          <li>Complete cycle from homing to park</li>
+          <li>Adaptive feedforward reaches the target faster than a fixed-gain approach</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap prose">
+  <h2>Gantry and clamp</h2>
+  <p>This subsystem sits inside the instrument's main liquid-handling gantry, so its vertical travel has to stay small to avoid the pipette toolhead. The electrode block also has to land flat and in the same place every cycle.</p>
+  <p>I used a dual lead-screw motion system for the horizontal and vertical axes. Lead screws are self-locking, so once in position they hold the clamp load mechanically, without the motor drawing current or fighting the load. The system stays clamped under pressure for the whole run, so this keeps it from drifting or overheating a driver.</p>
+  <figure>
+  <a class="zoom" href="/assets/images/vivvity-full-assembly.jpg"><img src="/assets/images/vivvity-full-assembly.jpg" width="1400" height="1005" loading="lazy" alt="The assembled Vivvity gantry and electromagnetic clamping subsystem"></a>
+  <figcaption>The assembled gantry and electromagnetic clamping subsystem.</figcaption>
+</figure>
+
+  <h2>Closed-loop pressure control</h2>
+  <p>The syringe pump drives fluid through the chip during a run. I built both the sensing and the control loop for it.</p>
+  <p><strong>Sensing.</strong> Pressure is read from a Honeywell MPRLS sensor through a custom I²C interface I wrote into the Marlin firmware (C++). The sensor reads absolute pressure, so the firmware tares it at the start of a session to get a gauge reading.</p>
+  <p><strong>Control.</strong> The syringe pump is a stepper on its own axis. It homes with a pressure headroom offset, so it can start building pressure right away. Reaching a target quickly and holding it precisely need different behavior, so the controller has three phases:</p>
+  <ul>
+    <li><strong>Fast phase:</strong> an adaptive feedforward estimate closes most of the distance to the setpoint in one move</li>
+    <li><strong>Fine phase:</strong> closes the remaining gap more slowly</li>
+    <li><strong>Hold phase:</strong> proportional control with a small anti-stiction dither, which keeps the plunger from sticking and then jumping past the target</li>
+  </ul>
+  <figure>
+  <a class="zoom" href="/assets/images/syringe-pump-pressure.jpg"><img src="/assets/images/syringe-pump-pressure.jpg" width="1011" height="511" loading="lazy" alt="Syringe pump driven by a stepper motor, with the pressure sensor breakout board and controller electronics on the bench"></a>
+  <figcaption>Syringe pump and pressure sensor, isolated for testing.</figcaption>
+</figure>
+</div>
+</article>
+<section class="section">
+  <div class="wrap">
+    <h2>Related work</h2>
+    <div class="related">
+    <a href="/vivvity/"><b>Vivvity system breakdown</b><small>Architecture, ownership, and status of the full instrument</small></a>
+    <a href="/electromagnet-fea/"><b>Electromagnet upgrade and FEA</b><small>Magnetostatic check of plate saturation → 30 psi seal</small></a>
+    <a href="/gantry-electromagnet-test/"><b>Gantry and electromagnetic lock test</b><small>Lock/release sequence and crash-prevention firmware</small></a>
+    <a href="/gasket-pressurization-module/"><b>Side-sealing gasket (SLAS2026)</b><small>5× contact area, printed on a Formlabs Form 4</small></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div>
+      <h2>Let's talk</h2>
+      <p>Looking for hardware, robotics, and mechanical engineering internships.</p>
+    </div>
+    <div class="btns">
+      <a class="btn btn-primary" href="mailto:maxbeantierney@gmail.com">maxbeantierney@gmail.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/maximilian-bean-tierney-b02609282/">LinkedIn</a>
+      <a class="btn" href="https://github.com/maxbeantierney">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

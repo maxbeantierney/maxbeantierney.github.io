@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Side-Sealing Gasket for an Automated Pressurization Module | Max Bean-Tierney</title>
+  <meta name="description" content="A flexible side-sealing gasket, SLA-printed on a Formlabs Form 4 in Flexible 80A, with five times the contact area of a standard rim seal for more reproducible microfluidic chip priming. Presented at SLAS2026.">
+  <link rel="canonical" href="https://maxbeantierney.github.io/gasket-pressurization-module/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Max Bean-Tierney">
+  <meta property="og:title" content="Side-Sealing Gasket for an Automated Pressurization Module | Max Bean-Tierney">
+  <meta property="og:description" content="A flexible side-sealing gasket, SLA-printed on a Formlabs Form 4 in Flexible 80A, with five times the contact area of a standard rim seal for more reproducible microfluidic chip priming. Presented at SLAS2026.">
+  <meta property="og:url" content="https://maxbeantierney.github.io/gasket-pressurization-module/">
+  <meta property="og:image" content="https://maxbeantierney.github.io/assets/images/gasket-chip.jpg">
+  <meta property="og:image:alt" content="SLA-printed gasket mounted on an Agilent DNA chip">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/">Max Bean-Tierney <span>· Mechanical Engineering</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="/#work">Work</a>
+      <a href="/vivvity/">Vivvity</a>
+      <a href="/patents/" class="nav-hide-sm">Patents</a>
+      <a href="/about/">About</a>
+      <!-- Resume: add once the updated PDF is at /assets/Max_Bean-Tierney_Resume.pdf
+      <a href="/assets/Max_Bean-Tierney_Resume.pdf">Resume</a> -->
+      <a class="nav-cta" href="mailto:maxbeantierney@gmail.com">Email</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<article>
+<div class="wrap page-head">
+  <p class="crumb"><a href="/#work">← Selected work</a></p>
+  <p class="eyebrow">Hardware · Presented at SLAS2026</p>
+  <h1>Novel Gasket Design for an Automated Pressurization Module</h1>
+  <p class="dek">A Flexible 80A SLA gasket printed on a Formlabs Form 4, with five times the contact area of a standard rim seal.</p>
+  <p class="meta"><span>Independent project, Tripathi Lab</span><span>February 2026</span></p>
+</div>
+
+<div class="wrap">
+  <figure class="hero-fig contain-fig">
+  <a class="zoom" href="/assets/images/gasket-chip.jpg"><img src="/assets/images/gasket-chip.jpg" width="780" height="314" alt="Top and side views of the translucent SLA-printed gasket mounted over the wells of an Agilent DNA chip"></a>
+  <figcaption>Top and side views of the gasket mounted on an Agilent DNA chip.</figcaption>
+</figure>
+</div>
+
+<div class="wrap prose">
+  <div class="result">
+    <h2>Result</h2>
+    <ul>
+      <li><strong>5× greater contact area</strong> than a standard rim seal, for a more reliable, consistent seal across repeated cycles</li>
+      <li>Presented at <strong>SLAS2026</strong>, the Society for Laboratory Automation and Screening International Conference and Exhibition (February 7–11, 2026, Boston)</li>
+    </ul>
+  </div>
+
+  <h2>Problem</h2>
+  <p>Priming a microfluidic chip means pushing gel and buffer into its channels under pressure before a run. If the seal between the priming hardware and the chip's wells leaks even slightly, the chip primes inconsistently, and that variability carries through to the assay results.</p>
+
+  <h2>Design</h2>
+  <p>The chip-priming module was designed around closed-loop pressure sensing, with a separate sensor in the line to verify the pressure delivered to the chip. My main contribution was the gasket, the part that decides whether any of that pressure actually reaches the chip.</p>
+  <p>A standard seal presses down on the rim of each sample well. My gasket seals around the sides of the well instead. It mounts so that the lip of a counterbore sits flush with each well's rim, which puts it in contact with both the rim and the outside wall of the well.</p>
+  <div class="fig-row two">
+    <figure>
+  <a class="zoom" href="/assets/images/gasket-profile.jpg"><img src="/assets/images/gasket-profile.jpg" width="480" height="320" loading="lazy" alt="Side-profile render of the gasket showing the tapered inlet port above a row of counterbored well seals"></a>
+  <figcaption>Side profile of the gasket design.</figcaption>
+</figure>
+    <figure>
+  <a class="zoom" href="/assets/images/gasket-priming.jpg"><img src="/assets/images/gasket-priming.jpg" width="790" height="250" loading="lazy" alt="Illustration of the microfluidic chip priming protocol: pipette gel-dye into the chip, press it with the priming station, then the primed chip"></a>
+  <figcaption>Typical chip-priming protocol the module automates.</figcaption>
+</figure>
+  </div>
+
+  <h2>Fabrication</h2>
+  <p>I printed the gasket on a <strong>Formlabs Form 4</strong> SLA printer in <strong>Flexible 80A</strong> resin. The flexible resin let the counterbore conform to each well while still holding the fine geometry needed to line up with the chip's well pattern. I fabricated and tested the gasket itself, since the rest of the module depended on it. The closed-loop sensing module was designed but not built.</p>
+  <details>
+    <summary>Post-processing details</summary>
+    <p>20-minute wash in isopropyl alcohol, a rinse in water, then a 10-minute UV cure at 35 °C.</p>
+  </details>
+  <figure class="portrait-video">
+  <a class="zoom" href="/assets/images/gasket-design.jpg"><img src="/assets/images/gasket-design.jpg" width="839" height="1345" loading="lazy" alt="Full SLAS poster panel: gasket on the DNA chip, side profile, design notes, and priming protocol"></a>
+  <figcaption>The full poster panel presented at SLAS2026.</figcaption>
+</figure>
+</div>
+</article>
+<section class="section">
+  <div class="wrap">
+    <h2>Related work</h2>
+    <div class="related">
+    <a href="/vivvity/"><b>Vivvity system breakdown</b><small>Architecture, ownership, and status of the full instrument</small></a>
+    <a href="/patents/"><b>Patent-pending electroosmotic flow cell</b><small>Co-inventor, proof-of-concept flow cell</small></a>
+    <a href="/electromagnet-fea/"><b>Electromagnet upgrade and FEA</b><small>Magnetostatic check of plate saturation → 30 psi seal</small></a>
+    <a href="/full-system-demo/"><b>Full system run video</b><small>Complete cycle with closed-loop pressure control</small></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div>
+      <h2>Let's talk</h2>
+      <p>Looking for hardware, robotics, and mechanical engineering internships.</p>
+    </div>
+    <div class="btns">
+      <a class="btn btn-primary" href="mailto:maxbeantierney@gmail.com">maxbeantierney@gmail.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/maximilian-bean-tierney-b02609282/">LinkedIn</a>
+      <a class="btn" href="https://github.com/maxbeantierney">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

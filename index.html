@@ -1,7 +1,208 @@
----
-# You don't need to edit this file, it's empty on purpose.
-# Edit theme's home layout instead if you wanna make some changes
-# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-layout: home
-author_profile: true
----
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Max Bean-Tierney | Mechanical Engineering Portfolio</title>
+  <meta name="description" content="Brown mechanical engineering student building electromechanical systems for biotech, automation, and robotics: gantry and clamp design, magnetostatic FEA, closed-loop pressure control, and SLA-printed sealing hardware.">
+  <link rel="canonical" href="https://maxbeantierney.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Max Bean-Tierney">
+  <meta property="og:title" content="Max Bean-Tierney | Mechanical Engineering Portfolio">
+  <meta property="og:description" content="Electromechanical systems for biotech, automation, and robotics. Designed, built, and validated.">
+  <meta property="og:url" content="https://maxbeantierney.github.io/">
+  <meta property="og:image" content="https://maxbeantierney.github.io/assets/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The assembled Vivvity gantry and electromagnetic clamping subsystem">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="preload" as="image" href="/assets/images/vivvity-loop-poster.jpg">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/">Max Bean-Tierney <span>· Mechanical Engineering</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="/#work">Work</a>
+      <a href="/vivvity/">Vivvity</a>
+      <a href="/patents/" class="nav-hide-sm">Patents</a>
+      <a href="/about/">About</a>
+      <!-- Resume: add once the updated PDF is at /assets/Max_Bean-Tierney_Resume.pdf
+      <a href="/assets/Max_Bean-Tierney_Resume.pdf">Resume</a> -->
+      <a class="nav-cta" href="mailto:maxbeantierney@gmail.com">Email</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Brown University · B.S. Mechanical Engineering · 2028</p>
+        <h1>Max Bean-Tierney</h1>
+        <p class="lede">Mechanical engineering student building electromechanical systems for biotech, automation, and robotics.</p>
+        <p class="sub">I design, fabricate, integrate, and validate hardware where mechanical, electrical, and software engineering meet.</p>
+        <div class="btns">
+          <a class="btn btn-primary" href="#work">View selected work</a>
+          <!-- <a class="btn" href="/assets/Max_Bean-Tierney_Resume.pdf">Download resume</a> -->
+          <a class="btn" href="mailto:maxbeantierney@gmail.com">Email me</a>
+          <a class="btn" href="https://www.linkedin.com/in/maximilian-bean-tierney-b02609282/">LinkedIn</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <video data-loop autoplay muted loop playsinline preload="auto" width="1280" height="720"
+               poster="/assets/images/vivvity-loop-poster.jpg"
+               aria-label="Silent clip: the Vivvity gantry traverses and lowers the electrode block onto a microfluidic chip">
+          <source src="/assets/videos/vivvity-loop.mp4" type="video/mp4">
+        </video>
+        <a class="media-tag" href="/full-system-demo/"><span class="long">Vivvity gantry · </span>Watch the full run →</a>
+        <button class="motion-toggle" type="button">Pause</button>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="metrics" role="list">
+        <div class="metric" role="listitem">
+          <div class="num">≈0.15 psi</div>
+          <div class="lbl">Closed-loop pressure hold</div>
+          <div class="ctx">Custom Marlin firmware, Honeywell MPRLS sensor</div>
+        </div>
+        <div class="metric" role="listitem">
+          <div class="num">30 psi</div>
+          <div class="lbl">Validated chip seal</div>
+          <div class="ctx">Electromagnetic clamp, checked with Ansys FEA and bench tests</div>
+        </div>
+        <div class="metric" role="listitem">
+          <div class="num">5×</div>
+          <div class="lbl">Gasket contact area</div>
+          <div class="ctx">Side-sealing SLA gasket, presented at SLAS2026</div>
+        </div>
+        <div class="metric" role="listitem">
+          <div class="num word">Patent pending</div>
+          <div class="lbl">Electroosmotic flow cell</div>
+          <div class="ctx">Co-inventor, Tripathi Lab, Brown University</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="vivvity" aria-labelledby="vivvity-h">
+    <div class="wrap feature">
+      <figure>
+        <a class="zoom" href="/assets/images/vivvity-full-assembly.jpg">
+          <img src="/assets/images/vivvity-full-assembly.jpg" width="1400" height="1005" loading="lazy"
+               alt="The assembled Vivvity gantry and electromagnetic clamping subsystem: two vertical lead-screw towers carry the electrode block over a purple microfluidic chip holder, with horizontal lead-screw rails and stepper motors on either side">
+        </a>
+        <figcaption>The assembled gantry and electromagnetic clamping subsystem. Click to enlarge.</figcaption>
+      </figure>
+      <div>
+        <p class="eyebrow">Flagship project · Tripathi Lab × Revvity</p>
+        <h2 id="vivvity-h">Vivvity: automated microfluidic processing instrument</h2>
+        <p class="own">I led the mechanical and electromechanical integration of the gantry, electromagnetic clamp, pressure-control hardware, firmware, and operator interface.</p>
+        <p>Vivvity automates chip clamping and pressurization for DNA/RNA analysis on microfluidic chips. It is being developed with Revvity as the successor to the LabChip GxII Touch. In August 2026 the gantry, clamp, and pressure system ran a complete cycle, from homing to park.</p>
+        <ul class="chips" aria-label="Subsystems">
+          <li>Dual lead-screw gantry</li><li>Electromagnetic clamp</li><li>Closed-loop pressure</li><li>Marlin / C++ firmware</li><li>Python operator GUI</li>
+        </ul>
+        <div class="btns">
+          <a class="btn btn-primary" href="/vivvity/">Read the system breakdown</a>
+          <a class="btn" href="/full-system-demo/">Watch the full run</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="work" aria-labelledby="work-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="work-h">Selected work</h2>
+        <p>Analysis, hardware, controls, fabrication, and research.</p>
+      </div>
+      <div class="cards">
+        <a class="card" href="/full-system-demo/">
+          <div class="card-img"><img src="/assets/images/full-system-run-poster.jpg" width="1280" height="720" loading="lazy" alt="Vivvity's electrode block lowered onto a microfluidic chip during a full-system run"></div>
+          <div class="card-body">
+            <div class="card-result">Holds ≈0.15 psi of setpoint</div>
+            <h3>Full system run with closed-loop pressure control</h3>
+            <p>Sensing and a three-phase control loop that run a complete cycle: home, clamp, pressurize, release, park.</p>
+            <ul class="chips"><li>Controls</li><li>Firmware</li><li>Sensors</li><li>Integration</li></ul>
+          </div>
+        </a>
+        <a class="card" href="/electromagnet-fea/">
+          <div class="card-img"><img src="/assets/images/electromagnet-fea.jpg" width="1379" height="1034" loading="lazy" alt="Ansys magnetostatic contour plot of magnetic flux density in the steel clamp plate"></div>
+          <div class="card-body">
+            <div class="card-result">30 psi seal · two-magnet design adopted</div>
+            <h3>Electromagnet upgrade with magnetostatic FEA</h3>
+            <p>Hand calculations and nonlinear Ansys FEA checked plate saturation before moving to two 160 lbf magnets. Bench testing then confirmed the seal.</p>
+            <ul class="chips"><li>Ansys</li><li>FEA</li><li>Magnetics</li><li>Test</li></ul>
+          </div>
+        </a>
+        <a class="card" href="/gasket-pressurization-module/">
+          <div class="card-img contain"><img src="/assets/images/gasket-chip.jpg" width="780" height="314" loading="lazy" alt="SLA-printed gasket mounted on an Agilent DNA chip, top and side views"></div>
+          <div class="card-body">
+            <div class="card-result">5× contact area · SLAS2026</div>
+            <h3>Side-sealing gasket for chip priming</h3>
+            <p>A flexible gasket that seals around the sides of each well, not just the rim. Printed on a Formlabs Form 4 in Flexible 80A.</p>
+            <ul class="chips"><li>SLA printing</li><li>Sealing</li><li>Microfluidics</li><li>CAD</li></ul>
+          </div>
+        </a>
+        <a class="card" href="/gantry-electromagnet-test/">
+          <div class="card-img"><img src="/assets/images/vivvity-gantry-cad.jpg" width="1378" height="822" loading="lazy" alt="CAD model of the dual lead-screw gantry with stepper motors on each axis"></div>
+          <div class="card-body">
+            <div class="card-result">Crash-safe moves · square homing</div>
+            <h3>Gantry and electromagnetic lock test</h3>
+            <p>Firmware-level lock and release sequence, safe-height crash prevention, and independent limit switches that keep the dual-motor axes square.</p>
+            <ul class="chips"><li>Motion control</li><li>Firmware</li><li>Mechanism design</li></ul>
+          </div>
+        </a>
+        <a class="card card-text-only" href="/patents/">
+          <div class="card-img"><span>0.1 mm channel<br>electroosmotic flow</span></div>
+          <div class="card-body">
+            <div class="card-result">Patent pending · co-inventor</div>
+            <h3>Electroosmotic flow cell</h3>
+            <p>A proof-of-concept flow cell built from glass coverslips and a 0.1 mm PTFE gasket, validated with a dyed gel-buffer under an applied field.</p>
+            <ul class="chips"><li>Research</li><li>Prototyping</li><li>Electrokinetics</li></ul>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="about-h">
+    <div class="wrap about-strip">
+      <img class="headshot" src="/assets/images/headshot.jpg" width="480" height="596" loading="lazy" alt="Portrait of Max Bean-Tierney">
+      <div>
+        <h2 id="about-h">About</h2>
+        <p>I'm a mechanical engineering student at Brown (Class of 2028) focused on electromechanical systems, robotics, automation, and hardware R&amp;D. I like working across mechanical design, sensing, controls, firmware, and test, especially while the system is still being defined.</p>
+        <p class="small">SolidWorks · Ansys · COMSOL · MATLAB · Python · Marlin/C++ · additive manufacturing · motor integration · pneumatics · test rigs · DFM/DFA</p>
+        <a href="/about/">More about me →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div>
+      <h2>Let's talk</h2>
+      <p>Looking for hardware, robotics, and mechanical engineering internships.</p>
+    </div>
+    <div class="btns">
+      <a class="btn btn-primary" href="mailto:maxbeantierney@gmail.com">maxbeantierney@gmail.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/maximilian-bean-tierney-b02609282/">LinkedIn</a>
+      <a class="btn" href="https://github.com/maxbeantierney">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

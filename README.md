@@ -1,27 +1,14 @@
-# Minimal Mistakes remote theme starter
+# maxbeantierney.github.io
 
-Click [**Use this template**](https://github.com/mmistakes/mm-github-pages-starter/generate) button above for the quickest method of getting started with the [Minimal Mistakes Jekyll theme](https://github.com/mmistakes/minimal-mistakes).
+Personal engineering portfolio for Max Bean-Tierney, live at https://maxbeantierney.github.io.
 
-Contains basic configuration to get you a site with:
+Plain HTML, CSS, and a little JavaScript, with no theme and no build step. Pushing to `main` deploys through
+`.github/workflows/pages.yml`, which copies the public files to GitHub Pages.
 
-- Sample posts.
-- Sample top navigation.
-- Sample author sidebar with social links.
-- Sample footer links.
-- Paginated home page.
-- Archive pages for posts grouped by year, category, and tag.
-- Sample about page.
-- Sample 404 page.
-- Site wide search.
+- `index.html`: homepage (hero loop, metrics, featured Vivvity, project cards)
+- `<page>/index.html`: one folder per project page, which keeps the old URLs working
+- `assets/css/site.css`: all styles (light and dark)
+- `assets/js/site.js`: hero video pause/play and click-to-enlarge images
+- `assets/images/`, `assets/videos/`: media (keep each file under 100 MB)
 
-Replace sample content with your own and [configure as necessary](https://mmistakes.github.io/minimal-mistakes/docs/configuration/).
-
----
-
-## Troubleshooting
-
-If you have a question about using Jekyll, start a discussion on the [Jekyll Forum](https://talk.jekyllrb.com/) or [StackOverflow](https://stackoverflow.com/questions/tagged/jekyll). Other resources:
-
-- [Ruby 101](https://jekyllrb.com/docs/ruby-101/)
-- [Setting up a Jekyll site with GitHub Pages](https://jekyllrb.com/docs/github-pages/)
-- [Configuring GitHub Metadata](https://github.com/jekyll/github-metadata/blob/master/docs/configuration.md#configuration) to work properly when developing locally and avoid `No GitHub API authentication could be found. Some fields may be missing or have incorrect data.` warnings.
+Preview locally with `python3 -m http.server 4000`, then open http://localhost:4000.

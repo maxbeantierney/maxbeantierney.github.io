@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vivvity: Automated Microfluidic Processing Instrument | Max Bean-Tierney</title>
+  <meta name="description" content="Case study: the gantry, electromagnetic clamp, closed-loop pressure control, firmware, and operator GUI I led for Vivvity, an automated microfluidic instrument developed with Revvity.">
+  <link rel="canonical" href="https://maxbeantierney.github.io/vivvity/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Max Bean-Tierney">
+  <meta property="og:title" content="Vivvity: Automated Microfluidic Processing Instrument | Max Bean-Tierney">
+  <meta property="og:description" content="Case study: the gantry, electromagnetic clamp, closed-loop pressure control, firmware, and operator GUI I led for Vivvity, an automated microfluidic instrument developed with Revvity.">
+  <meta property="og:url" content="https://maxbeantierney.github.io/vivvity/">
+  <meta property="og:image" content="https://maxbeantierney.github.io/assets/images/og-image.jpg">
+  <meta property="og:image:alt" content="The assembled Vivvity gantry and electromagnetic clamping subsystem">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/">Max Bean-Tierney <span>· Mechanical Engineering</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="/#work">Work</a>
+      <a href="/vivvity/" aria-current="page">Vivvity</a>
+      <a href="/patents/" class="nav-hide-sm">Patents</a>
+      <a href="/about/">About</a>
+      <!-- Resume: add once the updated PDF is at /assets/Max_Bean-Tierney_Resume.pdf
+      <a href="/assets/Max_Bean-Tierney_Resume.pdf">Resume</a> -->
+      <a class="nav-cta" href="mailto:maxbeantierney@gmail.com">Email</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<article>
+<div class="wrap page-head">
+  <p class="crumb"><a href="/#work">← Selected work</a></p>
+  <p class="eyebrow">Flagship case study</p>
+  <h1>Vivvity: Automated Microfluidic Processing Instrument</h1>
+  <p class="dek">An automated instrument for DNA/RNA analysis on microfluidic chips, built in the Tripathi Lab at Brown and developed with Revvity as the successor to the LabChip GxII Touch.</p>
+  <p class="meta"><span>Role: Lead Engineer, Gantry &amp; Control Systems</span><span>Tripathi Lab, Brown University</span><span>May 2025 – present</span></p>
+</div>
+
+<div class="wrap">
+  <figure class="hero-fig">
+  <a class="zoom" href="/assets/images/vivvity-full-assembly.jpg"><img src="/assets/images/vivvity-full-assembly.jpg" width="1400" height="1005" alt="The assembled Vivvity gantry and electromagnetic clamping subsystem: two vertical lead-screw towers carry the electrode block over a purple microfluidic chip holder, with horizontal lead-screw rails and stepper motors on either side"></a>
+  <figcaption>The assembled gantry and electromagnetic clamping subsystem.</figcaption>
+</figure>
+</div>
+
+<div class="wrap prose">
+  <div class="result">
+    <h2>Result</h2>
+    <ul>
+      <li><strong>Complete cycle demonstrated (August 2026):</strong> home, lower onto the chip, clamp, pressurize, release, and park. <a href="/full-system-demo/">Watch the run</a>.</li>
+      <li><strong>30 psi chip seal</strong> from the electromagnetic clamp, held for 90+ seconds in testing.</li>
+      <li><strong>Pressure held to about 0.15 psi of setpoint</strong> by a closed-loop syringe-pump controller.</li>
+      <li><strong>Two-magnet clamp adopted</strong> after magnetostatic FEA and bench testing. <a href="/electromagnet-fea/">See the analysis</a>.</li>
+    </ul>
+  </div>
+
+  <h2>My role</h2>
+  <p>I led the mechanical and electromechanical integration of the gantry, electromagnetic clamp, pressure-control hardware, firmware, and operator interface. The electrode block itself is supplied by Revvity.</p>
+
+  <h2>The problem</h2>
+  <p>Chip-based nucleic acid assays need precise, repeatable fluid handling under controlled pressure. When people load, clamp, and pressurize chips by hand, the results vary, throughput is limited, and the process is hard to scale. Vivvity automates those steps in a compact, programmable platform. It also has to fit inside a larger liquid handler, so its vertical travel is tightly limited.</p>
+</div>
+
+<div class="wrap">
+  <h2 style="margin-top:1.6em">System architecture</h2>
+  <ol class="arch">
+    <li><b>Motion control</b><span>Dual lead-screw gantry on horizontal and vertical axes. BTT Octopus v1.1 controller, with independent optical limit switches for each motor.</span></li>
+    <li><b>Electromagnetic clamp</b><span>Two 160 lbf rectangular electromagnets pulling a 1018 steel plate on the electrode block.</span></li>
+    <li><b>Pressure sensing &amp; control</b><span>Syringe pump on its own stepper axis. Honeywell MPRLS sensor over custom I²C, and a three-phase control loop.</span></li>
+    <li><b>Electrode interface</b><span>Revvity-supplied electrode block with a 5-pin high-voltage input to the chip.</span></li>
+    <li><b>Operator GUI</b><span>A Python interface replacing Pronterface: homing, pressurization, and a cleaning mode.</span></li>
+  </ol>
+  <p class="arch-note">Every GUI button calls a macro defined in firmware, so safety logic lives at the lowest level of the system.</p>
+</div>
+
+<div class="wrap prose">
+  <h2>What I built</h2>
+  <h3>Mechanism</h3>
+  <p>The dual lead-screw motion system works within tight vertical limits so it doesn't hit the main liquid handler's pipette toolhead. Lead screws are self-locking, so the mechanism holds the clamp load without the motors drawing current. The electrode block has to land flat and in the same place every cycle, because even a small deviation breaks the seal.</p>
+  <figure>
+  <a class="zoom" href="/assets/images/vivvity-gantry-cad.jpg"><img src="/assets/images/vivvity-gantry-cad.jpg" width="1378" height="822" loading="lazy" alt="CAD model of the dual lead-screw gantry with stepper motors on each axis"></a>
+  <figcaption>CAD model of the dual lead-screw gantry.</figcaption>
+</figure>
+  <h3>Sensing</h3>
+  <p>Pressure is read from a Honeywell MPRLS sensor through a custom I²C interface I wrote into the Marlin firmware. The firmware tares it at the start of each session, so readings are referenced to atmosphere.</p>
+  <h3>Firmware &amp; control</h3>
+  <p>I added custom G-code commands for work outside normal motion: electromagnet lock and release, pressurization sequences, and a three-phase pressure controller (fast feedforward, fine approach, then proportional hold with anti-stiction dither). Crash-prevention logic moves the gantry to a safe height before any move at or below chip level.</p>
+  <h3>Operator interface</h3>
+  <p>I built a Python GUI that lab staff with no technical background can run reliably. It shows live telemetry and has one-button homing, pressurization, and cleaning.</p>
+  <h3>Test &amp; validation</h3>
+  <p>I checked clamp plate saturation with hand calculations and Ansys magnetostatic FEA, then confirmed the seal on a bench rig. I also isolated the syringe pump and sensor to tune the control loop before full-system runs.</p>
+  <figure class="portrait-video">
+  <a class="zoom" href="/assets/images/clamp-test-rig.jpg"><img src="/assets/images/clamp-test-rig.jpg" width="855" height="1141" loading="lazy" alt="Machined aluminum clamp interface plate with the electromagnet pockets and chip opening, wired for bench testing"></a>
+  <figcaption>Clamp interface hardware on the test rig.</figcaption>
+</figure>
+
+  <h2>Status</h2>
+  <p>The gantry, clamp, and pressure subsystems now run together through a full automated cycle. Work continues on integrating them into the larger instrument.</p>
+</div>
+</article>
+<section class="section">
+  <div class="wrap">
+    <h2>Related work</h2>
+    <div class="related">
+    <a href="/full-system-demo/"><b>Full system run video</b><small>Complete cycle with closed-loop pressure control</small></a>
+    <a href="/electromagnet-fea/"><b>Electromagnet upgrade and FEA</b><small>Magnetostatic check of plate saturation → 30 psi seal</small></a>
+    <a href="/gantry-electromagnet-test/"><b>Gantry and electromagnetic lock test</b><small>Lock/release sequence and crash-prevention firmware</small></a>
+    <a href="/gasket-pressurization-module/"><b>Side-sealing gasket (SLAS2026)</b><small>5× contact area, printed on a Formlabs Form 4</small></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div>
+      <h2>Let's talk</h2>
+      <p>Looking for hardware, robotics, and mechanical engineering internships.</p>
+    </div>
+    <div class="btns">
+      <a class="btn btn-primary" href="mailto:maxbeantierney@gmail.com">maxbeantierney@gmail.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/maximilian-bean-tierney-b02609282/">LinkedIn</a>
+      <a class="btn" href="https://github.com/maxbeantierney">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>
