@@ -272,3 +272,13 @@ details[open] summary { margin-bottom: 10px; }
 /* Side-by-side figures cropped to one shape; click to see the full image. */
 .fig-row.match img { aspect-ratio: 4 / 3; object-fit: cover; }
 .hero-fig.contain-fig img { max-width: 780px; margin: 0 auto; object-fit: contain; background: #fff; }
+
+/* Email-copied confirmation */
+.toast {
+  position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 20px);
+  background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 8px;
+  font-weight: 600; font-size: .92rem; box-shadow: var(--shadow); z-index: 300;
+  opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; max-width: calc(100% - 32px); text-align: center;
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+@media (prefers-reduced-motion: reduce) { .toast { transition: none; } }

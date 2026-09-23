@@ -53,3 +53,30 @@ document.querySelectorAll("video[data-loop]").forEach(function (v) {
   box.addEventListener("click", close);
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && box.classList.contains("open")) close(); });
 })();
+
+// Email links: many visitors have no mail app set up, so a mailto: click can silently do nothing.
+// Also copy the address and say so, while still letting the mail app open if there is one.
+(function () {
+  var toast;
+  function show(msg) {
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.className = "toast";
+      toast.setAttribute("role", "status");
+      document.body.appendChild(toast);
+    }
+    toast.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(show.t);
+    show.t = setTimeout(function () { toast.classList.remove("show"); }, 3500);
+  }
+  document.querySelectorAll('a[href^="mailto:"]').forEach(function (a) {
+    a.addEventListener("click", function () {
+      var addr = a.getAttribute("href").replace("mailto:", "").split("?")[0];
+      var done = function () { show("Copied " + addr + " to your clipboard"); };
+      var fail = function () { show("Email me at " + addr); };
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(addr).then(done, fail);
+      else fail();
+    });
+  });
+})();
