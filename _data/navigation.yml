@@ -3,8 +3,6 @@ main:
     url: /posts/
   - title: "Patents"
     url: /patents/
-  - title: "Categories"
-    url: /categories/
   - title: "Tags"
     url: /tags/
   - title: "About"

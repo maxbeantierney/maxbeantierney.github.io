@@ -12,8 +12,6 @@ tags:
 
 The gantry and electromagnetic lock test from June used four cylindrical electromagnets rated at 26 lbf each, pulling against a 1018 steel plate on the electrode block. I wanted more clamping margin and a simpler layout, so I evaluated replacing them with two rectangular electromagnets rated at 160 lbf each.
 
-More magnet doesn't automatically mean more clamping force, though. The question was whether the plate could handle it.
-
 ## The Concern: Plate Saturation
 
 All of the clamping force passes through the steel plate on the electrode block. The plate is thin because Vivvity's vertical travel is tightly constrained, and a thin plate can only carry so much magnetic flux before it saturates. Past that point, extra coil current buys very little extra force, and the excess flux leaks into the surroundings instead of pulling on the plate.
@@ -40,7 +38,3 @@ To get clamping force, I used a force summation over the whole plate body rather
 The simulation, checked against physical testing, confirmed the two-magnet design, and I switched the clamp over to it. The clamp now holds a reliable chip seal to **30 psi**.
 
 {% include figure popup=true image_path="/assets/images/clamp-test-rig.jpg" alt="Clamp interface hardware on the bench" caption="Clamp interface hardware on the test rig." %}
-
-## A Practical Detail: Corrosion
-
-Bare electromagnet faces rust, and rust flakes are not something you want near biological samples. I protected the magnet faces with cold bluing as the primary treatment and Kapton tape as a second layer, which avoids adding any coating that could shed onto the chip.
